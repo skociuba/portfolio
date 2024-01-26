@@ -3,13 +3,10 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Hero from './components/Hero';
 import Nav from './components/Nav';
-import styles from './styles/style';
 const Home: React.FC = () => (
   <>
     <div className="w-full overflow-hidden">
-      <div className={styles.marginY}>
-        <Nav />
-      </div>
+      <Nav />
       <Hero />
       <Summary />
       <Skills />

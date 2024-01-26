@@ -35,7 +35,7 @@ const Main = () => {
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden">
+    <div className="w-full overflow-hidden">
       <div className="m-6 mb-10 flex justify-center sm:ml-0 sm:justify-start">
         <div className="fixed inset-0 bg-black/70 text-custom-blue" />
         <Link href="/">
@@ -45,7 +45,7 @@ const Main = () => {
         </Link>
       </div>
 
-      <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0">
+      <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 lg:pb-[100vh]">
         <form
           ref={form}
           onSubmit={handleSubmit}

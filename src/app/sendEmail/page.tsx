@@ -23,7 +23,7 @@ const Main = () => {
             console.log(result.text);
             if (form.current) {
               form.current.reset();
-              alert('Message was sended');
+              alert('Message was sent successfully');
             }
           },
           (error) => {
@@ -35,17 +35,16 @@ const Main = () => {
   };
 
   return (
-    <>
-      <div className="w-full overflow-hidden">
-        <div className="m-6 mb-10 flex justify-center sm:ml-0 sm:justify-start">
-          <div className="fixed inset-0 bg-black/70 text-custom-blue" />
-          <Link href="/">
-            <button className="mt-1 block h-12 w-[300px] transform rounded border bg-custom-blue text-black hover:bg-inherit hover:text-custom-blue lg:ml-5">
-              Home
-            </button>
-          </Link>
-        </div>
+    <div className="h-screen w-full overflow-hidden">
+      <div className="m-6 mb-10 flex justify-center sm:ml-0 sm:justify-start">
+        <div className="fixed inset-0 bg-black/70 text-custom-blue" />
+        <Link href="/">
+          <button className="mt-1 block h-12 w-[300px] transform rounded border bg-custom-blue text-black hover:bg-inherit hover:text-custom-blue lg:ml-5">
+            Home
+          </button>
+        </Link>
       </div>
+
       <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0">
         <form
           ref={form}
@@ -113,7 +112,7 @@ const Main = () => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

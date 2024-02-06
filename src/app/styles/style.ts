@@ -20,6 +20,12 @@ const styles = {
 
   marginX: 'sm:mx-16 mx-6',
   marginY: 'sm:my-20 my-10',
+  input:
+    ' mt-1 block h-10 w-full  rounded border bg-black pl-1 text-white opacity-80',
+  textArea:
+    'mt-1 block h-32 w-full  rounded border bg-black pl-1 text-white opacity-80',
+  submitButton:
+    'mt-1  block h-10 rounded  border text-custom-blue hover:bg-custom-blue hover:text-black',
 };
 
 export const layout = {

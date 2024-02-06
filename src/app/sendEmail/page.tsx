@@ -4,70 +4,64 @@ import React, {useState} from 'react';
 import emailjs from '@emailjs/browser';
 import Image from 'next/image';
 import Link from 'next/link';
+import {useForm} from 'react-hook-form';
 
+import BackButton from '../components/BackButton';
+
+import styles from './../../app/styles/style';
 import Phone from './../../../public/icons/phone.svg';
 import LinkedIn from './../../../public/icons/Linkedin.svg';
-//import SendEmail from './../../../public/icons/send (1).svg';
 import Target from './../../../public/icons/target.svg';
 import Email from './../../../public/icons/at-sign.svg';
-import Back from './../../../public/icons/arrow-left.svg';
+
+type FormData = {
+  user_name: string;
+  user_email: string;
+  subject: string;
+  message: string;
+};
 
 const Main = () => {
-  const [formValues, setFormValues] = useState({
-    user_name: '',
-    user_email: '',
-    subject: '',
-    message: '',
-  });
-
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+    reset,
+  } = useForm<FormData>();
   const [showAlert, setShowAlert] = useState(false);
-
-  const handleChange = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [isLoading, setIsLoading] = useState(false);
+  const onSubmit = (data: FormData) => {
+    setIsLoading(true);
     emailjs
       .send(
         process.env.NEXT_PUBLIC_SERVICE_ID || '',
         process.env.NEXT_PUBLIC_TEMPLATE_ID || '',
-        formValues,
+        data,
         process.env.NEXT_PUBLIC_USER_ID,
       )
       .then(
         (result) => {
           console.log(result.text);
-          setFormValues({
-            user_name: '',
-            user_email: '',
-            subject: '',
-            message: '',
-          });
           setShowAlert(true);
+          setIsLoading(false);
+          reset();
         },
         (error) => {
           console.log(error.text);
           alert('something went wrong');
+          setIsLoading(false);
         },
       );
   };
 
   return (
     <div className="w-full overflow-hidden">
-      <div className="m-6 mb-10 flex flex-col justify-center sm:ml-0 sm:justify-start">
+      <div className="m-6 mb-10 flex flex-col justify-center sm:justify-start">
         <div className="fixed inset-0 bg-black/70 text-custom-blue" />
         {showAlert ? (
           <div
             role="alert"
-            className="alert alert-success mb-5 flex transform justify-center sm:mr-5 ">
+            className="alert alert-success m-0 mb-5 flex transform justify-between">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 shrink-0 stroke-current"
@@ -86,61 +80,67 @@ const Main = () => {
             </button>
           </div>
         ) : null}
-        <Link href="/">
-          <button className=" mt-1 flex h-12 w-[100px] transform items-center justify-center rounded border bg-custom-blue text-black hover:bg-inherit hover:text-custom-blue lg:ml-5">
-            {' '}
-            <Image src={Back} alt="Profile" width={20} height={20} />
-            back
-          </button>
-        </Link>
+        <BackButton text="back" href="/" />
       </div>
       <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 lg:pb-[23vh]">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex w-2/3 flex-col space-y-4 text-custom-blue lg:w-1/3">
           <label>
             Name:
             <input
-              type="text"
-              name="user_name"
-              value={formValues.user_name}
-              onChange={handleChange}
-              className=" mt-1 block h-10 w-full  rounded border bg-black pl-1 text-white opacity-80"
+              className={`${styles.input}`}
+              {...register('user_name', {required: true})}
             />
+            {errors.user_name && (
+              <p className="text-red-500">This field is required</p>
+            )}
           </label>
+
           <label>
             Email:
             <input
-              type="email"
-              name="user_email"
-              value={formValues.user_email}
-              onChange={handleChange}
-              className=" mt-1 block h-10 w-full  rounded border bg-black pl-1 text-white opacity-80"
+              className={`${styles.input}`}
+              {...register('user_email', {
+                required: 'This field is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: 'invalid email address',
+                },
+              })}
             />
+            {errors.user_email && (
+              <p className="text-red-500">{errors.user_email.message}</p>
+            )}
           </label>
+
           <label>
             Topic:
             <input
-              type="text"
-              name="subject"
-              value={formValues.subject}
-              onChange={handleChange}
-              className="mt-1 block h-10 w-full  rounded border bg-black pl-1 text-white opacity-80"
+              className={`${styles.input}`}
+              {...register('subject', {required: true})}
             />
+            {errors.subject && (
+              <p className="text-red-500">This field is required</p>
+            )}
           </label>
+
           <label>
             Content:
             <textarea
-              name="message"
-              value={formValues.message}
-              onChange={handleChange}
-              className="mt-1 block h-32 w-full  rounded border bg-black pl-1 text-white opacity-80"
+              className={`${styles.textArea}`}
+              {...register('message', {required: true})}
             />
+            {errors.message && (
+              <p className="text-red-500">This field is required</p>
+            )}
           </label>
+
           <button
-            type="submit"
-            className="mt-1  block h-10 rounded  border text-custom-blue hover:bg-custom-blue hover:text-black">
-            Send
+            disabled={isLoading}
+            className={`${styles.submitButton}`}
+            type="submit">
+            {isLoading ? `Sending email...` : `Send`}
           </button>
         </form>
         <div className="flex w-full flex-col space-y-4 text-white lg:w-1/3 lg:pl-20">

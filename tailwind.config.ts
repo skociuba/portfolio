@@ -23,6 +23,6 @@ const config: Config = {
     borderWidth: ['responsive', 'hover', 'focus'],
     borderColor: ['responsive', 'hover', 'focus'],
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 };
 export default config;

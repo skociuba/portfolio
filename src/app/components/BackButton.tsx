@@ -9,9 +9,10 @@ import BackBlue from './../../../public/icons/arrow-left-blue.svg';
 interface BackButtonProps {
   text: string;
   href: string;
+  marginTop?: string;
 }
 
-const BackButton: React.FC<BackButtonProps> = ({text, href}) => {
+const BackButton: React.FC<BackButtonProps> = ({text, href, marginTop}) => {
   const [hover, setHover] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(5);
 
@@ -32,7 +33,9 @@ const BackButton: React.FC<BackButtonProps> = ({text, href}) => {
       <button
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        className={`fixed top-5 mt-1 flex h-12 transform items-center justify-center rounded border bg-custom-blue text-black hover:bg-inherit hover:text-custom-blue lg:ml-5 ${
+        className={`fixed top-${
+          marginTop || '5'
+        } mt-1 flex h-12 transform items-center justify-center rounded border bg-custom-blue text-black hover:bg-inherit hover:text-custom-blue lg:ml-5 ${
           scrollPosition > 5 ? 'w-12 rounded-full' : 'w-24'
         }`}>
         <Image

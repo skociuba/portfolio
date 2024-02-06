@@ -80,9 +80,11 @@ const Main = () => {
             </button>
           </div>
         ) : null}
-        <BackButton text="back" href="/" />
+        <div className="z-[30] mb-5">
+          <BackButton text="back" href="/" marginTop="15" />
+        </div>
       </div>
-      <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 lg:pb-[23vh]">
+      <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 lg:pb-[26vh]">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-2/3 flex-col space-y-4 text-custom-blue lg:w-1/3">

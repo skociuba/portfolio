@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import emailjs from '@emailjs/browser';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,8 +13,7 @@ import Email from './../../../public/icons/at-sign.svg';
 import Back from './../../../public/icons/arrow-left.svg';
 
 const Main = () => {
-  const form = useRef<HTMLFormElement>(null);
-  const [errors, setErrors] = useState({
+  const [formValues, setFormValues] = useState({
     user_name: '',
     user_email: '',
     subject: '',
@@ -23,30 +22,42 @@ const Main = () => {
 
   const [showAlert, setShowAlert] = useState(false);
 
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (form.current) {
-      emailjs
-        .sendForm(
-          'service_4z832gj',
-          'template_tdn1169',
-          form.current,
-          '6KKLRD4Gqko0hKQ90',
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-            if (form.current) {
-              form.current.reset();
-              setShowAlert(true);
-            }
-          },
-          (error) => {
-            console.log(error.text);
-            alert('something went wrong');
-          },
-        );
-    }
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_TEMPLATE_ID || '',
+        formValues,
+        process.env.NEXT_PUBLIC_USER_ID,
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setFormValues({
+            user_name: '',
+            user_email: '',
+            subject: '',
+            message: '',
+          });
+          setShowAlert(true);
+        },
+        (error) => {
+          console.log(error.text);
+          alert('something went wrong');
+        },
+      );
   };
 
   return (
@@ -54,7 +65,9 @@ const Main = () => {
       <div className="m-6 mb-10 flex flex-col justify-center sm:ml-0 sm:justify-start">
         <div className="fixed inset-0 bg-black/70 text-custom-blue" />
         {showAlert ? (
-          <div role="alert" className="alert alert-success mx-5 ml-5 transform">
+          <div
+            role="alert"
+            className="alert alert-success mb-5 flex transform justify-center sm:mr-5 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 shrink-0 stroke-current"
@@ -81,9 +94,8 @@ const Main = () => {
           </button>
         </Link>
       </div>
-      <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 lg:pb-[100vh]">
+      <div className="flex transform flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0 lg:pb-[23vh]">
         <form
-          ref={form}
           onSubmit={handleSubmit}
           className="flex w-2/3 flex-col space-y-4 text-custom-blue lg:w-1/3">
           <label>
@@ -91,39 +103,39 @@ const Main = () => {
             <input
               type="text"
               name="user_name"
+              value={formValues.user_name}
+              onChange={handleChange}
               className=" mt-1 block h-10 w-full  rounded border bg-black pl-1 text-white opacity-80"
             />
-            {errors.user_name && (
-              <p className="text-red-500">{errors.user_name}</p>
-            )}
           </label>
           <label>
             Email:
             <input
               type="email"
               name="user_email"
+              value={formValues.user_email}
+              onChange={handleChange}
               className=" mt-1 block h-10 w-full  rounded border bg-black pl-1 text-white opacity-80"
-            />{' '}
-            {errors.user_email && (
-              <p className="text-red-500">{errors.user_email}</p>
-            )}
+            />
           </label>
           <label>
             Topic:
             <input
               type="text"
               name="subject"
+              value={formValues.subject}
+              onChange={handleChange}
               className="mt-1 block h-10 w-full  rounded border bg-black pl-1 text-white opacity-80"
             />
-          </label>{' '}
-          {errors.subject && <p className="text-red-500">{errors.subject}</p>}
+          </label>
           <label>
             Content:
             <textarea
               name="message"
+              value={formValues.message}
+              onChange={handleChange}
               className="mt-1 block h-32 w-full  rounded border bg-black pl-1 text-white opacity-80"
-            />{' '}
-            {errors.message && <p className="text-red-500">{errors.message}</p>}
+            />
           </label>
           <button
             type="submit"

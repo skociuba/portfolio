@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import Send from './../../../../public/icons/Send.svg';
+import Check from './../../../../public/icons/check-square.svg';
 
 interface InternalItem {
   name: string;
@@ -33,7 +33,7 @@ const ExperienceSection: React.FC<{content: SectionContent}> = ({content}) => (
                 </div>
                 {el.description.map((item) => (
                   <div key={item.name} className="mb-6 flex items-center ">
-                    <Image src={Send} alt="Profile" width={20} height={20} />
+                    <Image src={Check} alt="Profile" width={20} height={20} />
                     <span className="ml-2">
                       {`${item.name}   ${item.date}`}
                     </span>

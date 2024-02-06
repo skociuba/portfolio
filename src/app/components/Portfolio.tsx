@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import {portfolio} from '../constants';
 
-import Send from './../../../public/icons/Send.svg';
+import Check from './../../../public/icons/check-square.svg';
 const Portfolio: React.FC = () => (
   <section className="mb-5 min-h-[100vh] pt-[10vh]">
     {portfolio.map((item) => (
@@ -33,7 +33,7 @@ const Portfolio: React.FC = () => (
           <div className=" flex w-full flex-col space-y-4 overflow-auto whitespace-normal text-white lg:w-2/3">
             {item.list.map((sentence) => (
               <p key={sentence} className="flex items-center p-5">
-                <Image src={Send} alt="Profile" width={20} height={20} />
+                <Image src={Check} alt="Profile" width={20} height={20} />
                 <span className="ml-4">{sentence}</span>
               </p>
             ))}

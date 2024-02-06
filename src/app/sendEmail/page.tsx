@@ -10,7 +10,7 @@ import BackButton from '../components/BackButton';
 
 import styles from './../../app/styles/style';
 import Phone from './../../../public/icons/phone.svg';
-import LinkedIn from './../../../public/icons/Linkedin.svg';
+import LinkedIn from './../../../public/icons/linkedin.svg';
 import Target from './../../../public/icons/target.svg';
 import Email from './../../../public/icons/at-sign.svg';
 

@@ -14,12 +14,12 @@ interface SectionContent {
 }
 const Section: React.FC<{content: SectionContent}> = ({content}) => (
   <>
-    <div className="flex transform flex-col justify-center text-white">
-      <div className="w-full pt-3 text-center">
-        <h1 className="py-4 text-3xl font-bold text-custom-blue">
+    <div className="flex transform flex-col justify-center border-b-2 border-custom-blue pb-10 text-white">
+      <div className="w-full pt-3 ">
+        <h1 className="ml-5 pb-8 pt-5 text-3xl font-bold text-custom-blue lg:px-[12%]">
           {content.title}
         </h1>
-        <div className="m-5 flex flex-col flex-wrap md:flex-row">
+        <div className="m-5 flex flex-col flex-wrap text-center md:flex-row">
           <div className="pr-5 md:w-1/2 lg:border-r-2 lg:border-custom-blue">
             {content.items1.map((el) => (
               <div className="lg:px-[25%]" key={el.subTitle}>

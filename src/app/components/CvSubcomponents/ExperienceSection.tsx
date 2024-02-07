@@ -20,11 +20,11 @@ interface SectionContent {
 const ExperienceSection: React.FC<{content: SectionContent}> = ({content}) => (
   <>
     <div className="flex transform flex-col justify-center text-white ">
-      <div className="mb-5 w-full pt-5 text-center">
-        <h1 className="pb-8 pt-5 text-3xl font-bold text-custom-blue">
+      <div className="mb-5 w-full pt-5 ">
+        <h1 className="ml-5 pb-8 pt-5 text-3xl font-bold text-custom-blue lg:px-20">
           {content.title}
         </h1>
-        <div className="m-5 flex flex-col flex-wrap md:flex-row">
+        <div className="m-5 flex flex-col flex-wrap text-center md:flex-row">
           <div>
             {content.items.map((el) => (
               <div className="pb-8 lg:px-20" key={el.subTitle}>

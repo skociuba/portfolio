@@ -1,15 +1,11 @@
 export const summaryContent = {
   title: 'Summary',
-  description: `Hello, My name is Sebastian Kociuba. I am React front-end developer
-    with three years of commercial experience. I'm easy learning
-    and hardworking person, who can work on existing projects, as well
-    as create new ones from scratch. Without any issues I can add new
-    features, find and fix bugs, and make sure all well tested changes
-    can go to production using a full CI/CD pipeline. I get along easily
-    with people, and my English is good, so without any issues I can
-    talk and understand business requirements. I would be very happy to
-    talk more in person, and be able to present my value and experience
-    more in details to you and your company.`,
+  description: `Hello, my name is Sebastian Kociuba. I am the father of two adolescent children. I'm a React front-end developer
+  with three years of commercial experience and an additional two years as a freelancer. I learn easily
+  and a hardworking person who can also work on existing projects
+  how to create new ones from scratch. I can add new ones without any problem
+  functions, find and fix errors. I get along easily
+  with people and my English is good. My second passion is space flights. It's amazing how much progress humanity has made in this field. Contact me if you have any questions`,
   phone: '505 683 245',
   email: 'kociuba.sebastian@gmail.com',
   src: '/images/profile.jpg',
@@ -60,7 +56,7 @@ export const experienceAndEducation = {
       description: [
         {
           name: 'Junior Frontend Developer HSBC:',
-          date: '2021 – now',
+          date: 'march 2021 – january 2024',
         },
         {
           name: 'Operator of the cutting machine Lear Corporation:',
@@ -81,7 +77,7 @@ export const experienceAndEducation = {
       description: [
         {
           name: 'University of Agriculture name of Hugon Kołłątaj:',
-          date: '2021 – 2007',
+          date: '2022 – 2007',
         },
       ],
     },
@@ -100,13 +96,15 @@ export const portfolio = [
     img: '/images/promy.png',
   },
   {
-    name: 'Portfolio, current page',
-    link: 'https://portfolio-tau-ten-43.vercel.app/',
+    name: 'To Do, Next app',
+    link: 'https://mongo-connect-test.vercel.app/',
     list: [
-      "I start learning some new features, and i decided to create my own portfolio, i'm using here Next.js, Tailwind,",
+      "I start learning some new features, i'm using here Next.js and Tailwind",
       'To deploy I used Vercel.',
+      'To manage state I m using RTQ queries',
+      'App is integrated with Mongo Db',
     ],
-    img: '/images/portfolio.png',
+    img: '/images/mongo.png',
   },
   {
     name: 'Web Developer Blog',

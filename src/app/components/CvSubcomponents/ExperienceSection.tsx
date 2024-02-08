@@ -19,9 +19,9 @@ interface SectionContent {
 }
 const ExperienceSection: React.FC<{content: SectionContent}> = ({content}) => (
   <>
-    <div className="flex transform flex-col justify-center text-white ">
-      <div className="mb-5 w-full pt-5 ">
-        <h1 className="ml-5 pb-8 pt-5 text-3xl font-bold text-custom-blue lg:px-20">
+    <div className="mx-8 flex transform flex-col justify-center text-white lg:mx-2">
+      <div className="w-full">
+        <h1 className="py:0 ml-5 text-3xl font-bold text-custom-blue lg:px-20 lg:py-8">
           {content.title}
         </h1>
         <div className="m-5 flex flex-col flex-wrap text-center md:flex-row">

@@ -14,7 +14,7 @@ const Portfolio: React.FC = () => (
         <div
           key={item.name}
           className=" mb-10 flex transform flex-col items-center justify-center space-y-4 border-b-2 border-custom-blue pb-10  lg:mx-12 lg:flex-row lg:space-x-4  lg:space-y-0">
-          <div className="flex w-full flex-col items-center justify-center space-y-4 text-custom-blue lg:w-1/3">
+          <div className="flex w-full flex-col items-center justify-center space-y-4 pb-2 text-custom-blue  lg:w-1/3">
             <div className="relative">
               <div className="absolute inset-0 w-full rounded-lg bg-custom-blue" />
               <div className="transform transition-all duration-500 hover:translate-x-8 hover:translate-y-8">

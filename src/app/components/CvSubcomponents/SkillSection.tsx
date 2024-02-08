@@ -14,9 +14,9 @@ interface SectionContent {
 }
 const Section: React.FC<{content: SectionContent}> = ({content}) => (
   <>
-    <div className="flex transform flex-col justify-center border-b-2 border-custom-blue pb-10 text-white">
-      <div className="w-full pt-3 ">
-        <h1 className="ml-5 pb-8 pt-5 text-3xl font-bold text-custom-blue lg:px-[12%]">
+    <div className="mt:0 mx-10 flex transform flex-col justify-center border-b-2 border-custom-blue pb-2 text-white lg:mx-2 lg:mt-8">
+      <div className="mt-2 w-full">
+        <h1 className="ml-5 pb-3 text-3xl font-bold text-custom-blue lg:px-[12%]">
           {content.title}
         </h1>
         <div className="m-5 flex flex-col flex-wrap text-center md:flex-row">
@@ -27,7 +27,7 @@ const Section: React.FC<{content: SectionContent}> = ({content}) => (
                   {el.subTitle}
                 </div>
                 {el.description.map((item) => (
-                  <div key={item} className="mb-6 flex items-center ">
+                  <div key={item} className="mb-5 flex items-center ">
                     <Image src={Check} alt="Profile" width={20} height={20} />
                     <span className="ml-2">{item}</span>
                   </div>

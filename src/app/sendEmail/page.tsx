@@ -150,7 +150,7 @@ const Main = () => {
             {' '}
             <Image src={Phone} alt="Profile" width={20} height={20} />
             <span className="ml-4">
-              <a href="tel:+48502424865">+48 502 424 865</a>
+              <a href="tel:+48505683245">+48 505 683 245</a>
             </span>
           </p>
           <p className="flex items-center p-5">
